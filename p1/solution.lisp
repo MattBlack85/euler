@@ -14,4 +14,4 @@
   (loop
        for item in (range :max 1000)
        do (is-multiple item)
-       (print *ss*)))
+       (print *sum*)))
