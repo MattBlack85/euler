@@ -1,1 +1,11 @@
-
+(defun biggest-palindrome-2-per-3()
+  (let ((first 999) (second 999) (biggest 0))
+    (loop
+      (when (eq second 100) (setq first (- first 1)) (setq second 999))
+      (when (eq first 100) (return biggest))
+      (let ((prod (* first second)))
+	(let ((str (write-to-string prod)))
+	  (if (eq (length str) 6)
+	      (if (string= (subseq str 0 3) (reverse (subseq str 3 6)))
+		  (if (> prod biggest) (setq biggest prod))))
+	  (setq second (- second 1)))))))
