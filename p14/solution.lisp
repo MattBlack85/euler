@@ -1,13 +1,12 @@
-;; Collaaaaaatz
-(defvar start 999999)
-(defvar longest-series '())
-(defvar temp-list '())
-(defvar number-generate)
+(defvar actual-number 999999)
+(defvar longest-series 0)
+(defvar temp-series 0)
+(defvar largest-number 0)
 
-(defun set-max()
-  (setq number-generate start)
-  (setq longest-series temp-list))
-
+(defun set-results()
+  (setq largest-number actual-number)
+  (setq longest-series temp-series))
+  
 (defun get-next(n)
   (if (eq (mod n 2) 0)
       (/ n 2)
@@ -15,16 +14,16 @@
 
 (defun find-next(n)
   (let ((next (get-next n)))
-    (setq temp-list (append temp-list (list next)))
+    (setq temp-series (+ temp-series 1))
     (if (not (eq n 2))
 	(find-next next))))
 
 (defun main()
   (loop
-     while (> start 500000)
-     do (find-next start)
-       (if (> (list-length temp-list) (list-length longest-series))
-	   (set-max))
-       (setq temp-list '())
-       (setq start (- start 1)))
-  (print number-generate))
+     while (> actual-number 500000)
+     do (find-next actual-number)
+       (if (> temp-series longest-series)
+	   (set-results))
+       (setq temp-series 0)
+       (setq actual-number (- actual-number 1)))
+  (print largest-number))
